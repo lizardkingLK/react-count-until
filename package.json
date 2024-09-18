@@ -11,7 +11,13 @@
   "scripts": {
     "build": "tsc && vite build"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "count",
+    "until",
+    "countDown",
+    "date"
+  ],
   "author": "lizardkinglk",
   "license": "ISC",
   "description": "count down to time",
