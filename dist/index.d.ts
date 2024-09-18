@@ -1,1 +1,1 @@
-export { CountUntil } from './components/CountUntil';
+export * from './components/CountUntil';
