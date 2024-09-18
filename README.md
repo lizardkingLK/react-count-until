@@ -16,7 +16,16 @@ Install react-countdown-until with npm
 import CountDown from "react-countdown-until";
 
 function App() {
-  return <CountDown />;
+  return (
+    <>
+      {/* returns in format yyy:MM:dd:HH:mm:ss */}
+      <CountUntil />
+      {/* or */}
+      <CountUntil date={new Date("2025-01-01")} />
+      {/* or */}
+      <CountUntil date={new Date("2026-01-01")} />
+    </>
+  );
 }
 ```
 
