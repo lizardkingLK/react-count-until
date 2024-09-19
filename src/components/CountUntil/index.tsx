@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { CountUntilProps } from "./types";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { paddingOne, paddingTwo, paddingThree } from "./constants";
+import { CountUntilItemProps, CountUntilProps } from "./types";
 
 /**
  * Renders Count Until Component
@@ -14,6 +14,15 @@ import { paddingOne, paddingTwo, paddingThree } from "./constants";
  */
 export const CountUntil: React.FC<CountUntilProps> = ({
   date,
+  className = "flex font-mono",
+  requireLabels = false,
+  seperator = ":",
+  displayYears = true,
+  displayMonths = true,
+  displayDays = true,
+  displayHours = true,
+  displayMinutes = true,
+  displaySeconds = true,
 }: CountUntilProps) => {
   const [remaining, setRemaining] = useState(0);
   const [years, setYears] = useState<string>(paddingThree);
@@ -96,8 +105,70 @@ export const CountUntil: React.FC<CountUntilProps> = ({
   }, [remaining, updateDisplay]);
 
   return (
-    <h1 className="font-mono">
-      {years}:{months}:{days}:{hours}:{minutes}:{seconds}
-    </h1>
+    <>
+      <div className={className}>
+        {displayYears && (
+          <CountUntilItem
+            label={"yyy"}
+            required={requireLabels}
+            value={years}
+            seperator={seperator}
+          />
+        )}
+        {displayMonths && (
+          <CountUntilItem
+            label={"MM"}
+            required={requireLabels}
+            value={months}
+            seperator={seperator}
+          />
+        )}
+        {displayDays && (
+          <CountUntilItem
+            label={"dd"}
+            required={requireLabels}
+            value={days}
+            seperator={seperator}
+          />
+        )}
+        {displayHours && (
+          <CountUntilItem
+            label={"HH"}
+            required={requireLabels}
+            value={hours}
+            seperator={seperator}
+          />
+        )}
+        {displayMinutes && (
+          <CountUntilItem
+            label={"mm"}
+            required={requireLabels}
+            value={minutes}
+            seperator={seperator}
+          />
+        )}
+        {displaySeconds && (
+          <CountUntilItem
+            label={"ss"}
+            required={requireLabels}
+            value={seconds}
+          />
+        )}
+      </div>
+    </>
   );
 };
+
+const CountUntilItem = memo(
+  ({ value, required, label, seperator }: CountUntilItemProps) => {
+    return (
+      <>
+        <div className="flex flex-col space-y-4">
+          <p>{value}</p>
+          {required && <p>{label}</p>}
+        </div>
+        <span>{seperator}</span>
+      </>
+    );
+  }
+);
