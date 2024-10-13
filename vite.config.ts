@@ -6,7 +6,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: "./src/index.ts",
-      name: "vite-react-ts-button",
+      name: "react-count-until",
       fileName: (format) => `index.${format}.js`,
       formats: ["cjs", "es"],
     },
